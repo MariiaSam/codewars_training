@@ -268,7 +268,6 @@ console.log(countAnimals('dog,cat', ['dog', 'cat']));
 //     });
 //   }
 
-
 // You get a new job working for Eggman Movers. Your first task is to write a method that will allow the admin staff to enter a person’s name and return what that person's role is in the company.
 
 // You will be given an array of object literals holding the current employees of the company. You code must find the employee with the matching firstName and lastName and then return the role for that employee or if no employee is not found it should return "Does not work here!"
@@ -278,17 +277,23 @@ console.log(countAnimals('dog,cat', ['dog', 'cat']));
 // let employees = [ {firstName: "Dipper", lastName: "Pines", role: "Boss"}, ...... ]
 // There are no duplicate names in the array and the name passed in will be a single string with a space between the first and last name i.e. Jane Doe or just a name.
 
+// ========================6 TASK========================
 
 function findEmployeesRole(name) {
-  const [firstName, lastName] = name.split(' ')
+  const [firstName, lastName] = name.split(' ');
 
-for (let i = 0; i < employees.length; i +=1 ){
-if (employees[i].firstName === firstName && employees[i].lastName === lastName ){
-return employees[i].role}
-}
-  return 'Does not work here!'; 
+  for (let i = 0; i < employees.length; i += 1) {
+    if (
+      employees[i].firstName === firstName &&
+      employees[i].lastName === lastName
+    ) {
+      return employees[i].role;
+    }
+  }
+  return 'Does not work here!';
 }
 
+//  =====2======
 
 // function findEmployeesRole(name) {
 //     for(var i = 0; i < employees.length; i++)
@@ -296,14 +301,17 @@ return employees[i].role}
 //     return "Does not work here!";
 //   }
 
+//  =====3======
+
 // function findEmployeesRole(name) {
 //     let [employee] = employees.filter(x => `${x.firstName} ${x.lastName}` === name);
 //     return employee ? employee.role : "Does not work here!";
 //   }
 
+//  =====4======
 
 // const findEmployeesRole = (() => {
-    
+
 //     let employees = [
 //         { firstName: "Ollie",  lastName: "Hepburn",  role: "Boss" },
 //         { firstName: "Morty",  lastName: "Smith",    role: "Truck Driver" },
@@ -319,7 +327,61 @@ return employees[i].role}
 //         { firstName: "Jewel",  lastName: "Bell",     role: "Receptionist" },
 //         { firstName: "Colin",  lastName: "Brown",    role: "Trainee" }
 //     ];
-    
+
 //     return name => employees.reduce((o, e) => (o[`${e.firstName} ${e.lastName}`] = e.role, o), {})[name] || 'Does not work here!';
-    
+
 // })();
+
+// ========================7 TASK========================
+
+// Write a function that takes two arguments, and returns a new array populated with the elements that only appear once, in either one array or the other, taken only once; display order should follow what appears in arr1 first, then arr2:
+
+// hotSingles([1, 2, 3, 3], [3, 2, 1, 4, 5]) // [4, 5]
+// hotSingles(["tartar", "blanket", "cinnamon"], ["cinnamon", "blanket", "domino"]) // ["tartar", "domino"]
+// hotSingles([77, "ciao"], [78, 42, "ciao"]) // [77, 78, 42]
+// hotSingles([1, 2, 3, 3], [3, 2, 1, 4, 5, 4]) // [4,5]
+
+function hotSingles(arr1, arr2) {
+  const concatArrs = arr1.concat(arr2);
+
+  let elCounts = {};
+
+  concatArrs.forEach(el => {
+    if (elCounts[el]) {
+      elCounts[el] += 1;
+    } else {
+      elCounts[el] = 1;
+    }
+  });
+
+  const unElem = [];
+  concatArrs.forEach(el => {
+    if (elCounts[el] === 1) {
+      unElem.push(el);
+      elCounts[el] = 0;
+    }
+  });
+  return unElem;
+}
+
+console.log(hotSingles([1, 2, 3, 3], [3, 2, 1, 4, 5])); //
+
+// other my solution
+function hotSingles(arr1, arr2) {
+  const concatArrs = arr1.concat(arr2);
+
+  const elCounts = concatArrs.reduce((counts, el) => {
+    counts[el] = (counts[el] || 0) + 1;
+    return counts;
+  }, {});
+  const unElem = concatArrs.filter(el => {
+    return elCounts[el] === 1;
+  });
+  return unElem;
+}
+
+console.log(hotSingles([1, 2, 3, 3], [3, 2, 1, 4, 5]))
+console.log(hotSingles(["tartar", "blanket", "domino"], ["blanket"]),["tartar", "domino"])
+console.log(hotSingles([77, "basketweave"], [78, 42, "basketweave"]))
+console.log(hotSingles([100, 45, "ciao"], [100, 2, 3, 45, 5]))
+console.log(hotSingles([10, 200, 30], [10, 20, 3, 4, 5, 200]))
