@@ -385,3 +385,5 @@ console.log(hotSingles(["tartar", "blanket", "domino"], ["blanket"]),["tartar", 
 console.log(hotSingles([77, "basketweave"], [78, 42, "basketweave"]))
 console.log(hotSingles([100, 45, "ciao"], [100, 2, 3, 45, 5]))
 console.log(hotSingles([10, 200, 30], [10, 20, 3, 4, 5, 200]))
+
+//консоль видає вірні тести, але кодеварсу видніше
