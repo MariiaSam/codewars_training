@@ -52,19 +52,18 @@ console.log(solution('abcde', 'abc'));
 // "double  spaces"      ==> "elbuod  secaps"
 
 function reverseWords(str) {
-    const splitString = str.split(" ");
-    
-    function reverseWord(word){
-      return word.split('').reverse().join("")
-    }
-    
-    let reverseWords = splitString.map(reverseWord);
-  return reverseWords.join(" ");
-    
+  const splitString = str.split(' ');
+
+  function reverseWord(word) {
+    return word.split('').reverse().join('');
   }
 
-console.log(reverseWords('The quick brown fox jumps over the lazy dog.'))
-console.log(reverseWords('The quick brown fox jumps over the lazy dog.'))
+  let reverseWords = splitString.map(reverseWord);
+  return reverseWords.join(' ');
+}
+
+console.log(reverseWords('The quick brown fox jumps over the lazy dog.'));
+console.log(reverseWords('The quick brown fox jumps over the lazy dog.'));
 
 //  =====2======
 
@@ -114,13 +113,12 @@ console.log(reverseWords('The quick brown fox jumps over the lazy dog.'))
 // Note: for this kata y isn't considered a vowel.
 
 function disemvowel(str) {
-    return str.replace(/[aeiou]/gi, '');
-  }
+  return str.replace(/[aeiou]/gi, '');
+}
 
-  console.log(disemvowel("This website is for losers LOL!"));
+console.log(disemvowel('This website is for losers LOL!'));
 
-
-  //  =====2======
+//  =====2======
 
 //   function disemvowel(str) {
 //     return (str || "").replace(/[aeiou]/gi, "");
@@ -139,7 +137,7 @@ function disemvowel(str) {
 
 // function disemvowel(str) {
 //     var vowels = ['a', 'e', 'i', 'o', 'u'];
-    
+
 //     return str.split('').filter(function(el) {
 //       return vowels.indexOf(el.toLowerCase()) == -1;
 //     }).join('');
@@ -153,60 +151,117 @@ function disemvowel(str) {
 
 // Write a function which would allow them to do so. If no students passed the test that month, return 'No pass scores registered.'.
 
-
 // Example:
 
 // [10,10,10,18,20,20] --> 12
 
-function passed (list) { 
+function passed(list) {
+  const passList = list.filter(el => el <= 18);
 
-    const passList = list.filter(el => el <= 18)
-    
-    if (passList.length === 0) {
-     return 'No pass scores registered.'
-    }
-  const sum =passList.reduce((acc,el ) => acc +el, 0 )
-    const average = Math.round(sum /passList.length)
-  return average
-    } 
+  if (passList.length === 0) {
+    return 'No pass scores registered.';
+  }
+  const sum = passList.reduce((acc, el) => acc + el, 0);
+  const average = Math.round(sum / passList.length);
+  return average;
+}
 
-    console.log(passed([10,10,10,18,20,20]));
+console.log(passed([10, 10, 10, 18, 20, 20]));
 
 //  =====2======
-    // function passed (list) { 
-    //     var c=0;
-    //     var d=0;
-    //     for (var i=0; i<list.length; ++i)
-    //       if (list[i]<=18)
-    //       {
-    //         c++;
-    //         d+=list[i];
-    //       }
-    //     return c==0?'No pass scores registered.':Math.round(d/c);
-    //   } 
+// function passed (list) {
+//     var c=0;
+//     var d=0;
+//     for (var i=0; i<list.length; ++i)
+//       if (list[i]<=18)
+//       {
+//         c++;
+//         d+=list[i];
+//       }
+//     return c==0?'No pass scores registered.':Math.round(d/c);
+//   }
 
-    //  =====3======
-    // function passed (list) { 
+//  =====3======
+// function passed (list) {
 
-    //     // dont need a new array - just a new variable to loop to tally total scores
-    //     // and another new variable to count number of passes
-    //     // single for loop can do two actions as looping through same data 
-    //     // if statement with one condition (<=18) but two outputs (increment passes and sum score)
-    //     // then divide two variables using round function
-          
-    //     let passedScores = 0;
-    //     let numberPassed = 0; 
-          
-    //       for (let i=0; i < list.length; i++)
-            
-    //         if (list[i] <= 18) {
-    //           passedScores += list[i];
-    //           numberPassed++
-    //         }
-        
-    //       if (numberPassed === 0) {
-    //         return 'No pass scores registered.'
-    //         } else {
-    //           return Math.round(passedScores/numberPassed)
-    //         }
-    //     } 
+//     // dont need a new array - just a new variable to loop to tally total scores
+//     // and another new variable to count number of passes
+//     // single for loop can do two actions as looping through same data
+//     // if statement with one condition (<=18) but two outputs (increment passes and sum score)
+//     // then divide two variables using round function
+
+//     let passedScores = 0;
+//     let numberPassed = 0;
+
+//       for (let i=0; i < list.length; i++)
+
+//         if (list[i] <= 18) {
+//           passedScores += list[i];
+//           numberPassed++
+//         }
+
+//       if (numberPassed === 0) {
+//         return 'No pass scores registered.'
+//         } else {
+//           return Math.round(passedScores/numberPassed)
+//         }
+//     }
+
+// ========================5 TASK========================
+
+// Coding in function countAnimals. function accept two parameters: animals, a string contains some animals; count, an array list of which animals we should count. The result should be a number array.
+
+// Examples
+// countAnimals("dog,cat",["dog","cat"]); //=> [1,1]
+// countAnimals("dog,cat",["dog","cat","pig"]); //=> [1,1,0]
+// countAnimals("dog,dog,cat",["dog","cat"]); //=> [2,1]
+// countAnimals("dog,dog,cat",["pig","cow"]); //=> [0,0]
+
+function countAnimals(animals, count) {
+  const anim = [];
+  const regex = new RegExp(count.join('|'), 'g'); //для пошуку всіх тварин зі списку 
+
+  const matches = animals.match(regex)//для знаходження всіх співпадінь між регулярним виразом і рядком animals
+
+  for (const animal of count) {
+    const countAnimal = matches ? matches.filter(match => match === animal).length : 0
+    anim.push(countAnimal)
+}
+return anim
+}
+console.log(countAnimals("dog,cat",["dog","cat"]))
+
+// мій варіант без регулярного виразу
+// function countAnimals(animals, count) {
+//     const animalArray = animals.split(','); // розділити рядок animals на масив за комами
+//     const result = [];
+  
+//     for (const targetAnimal of count) {
+//       let countForAnimal = 0;
+//       for (const animal of animalArray) {
+//         if (animal === targetAnimal) {
+//           countForAnimal+=1;
+//         }
+//       }
+//       result.push(countForAnimal);
+//     }
+  
+//     return result;
+//   }
+  
+//  =====3======
+// function countAnimals(animals,count){
+//     return count.map(animal => (animals.match(new RegExp(animal, "g")) || []).length);
+//   }
+
+  //  =====4======
+
+//   const countAnimals = (animals,count) => count.map(x => animals.split(x).length - 1);
+
+  //  =====5======
+
+// function countAnimals(animals,count){
+//     return count.map(function(x){
+//       return (animals.match(new RegExp(x,'g'))||[]).length;
+//     });
+//   }
