@@ -219,23 +219,25 @@ console.log(passed([10, 10, 10, 18, 20, 20]));
 
 function countAnimals(animals, count) {
   const anim = [];
-  const regex = new RegExp(count.join('|'), 'g'); //для пошуку всіх тварин зі списку 
+  const regex = new RegExp(count.join('|'), 'g'); //для пошуку всіх тварин зі списку
 
-  const matches = animals.match(regex)//для знаходження всіх співпадінь між регулярним виразом і рядком animals
+  const matches = animals.match(regex); //для знаходження всіх співпадінь між регулярним виразом і рядком animals
 
   for (const animal of count) {
-    const countAnimal = matches ? matches.filter(match => match === animal).length : 0
-    anim.push(countAnimal)
+    const countAnimal = matches
+      ? matches.filter(match => match === animal).length
+      : 0;
+    anim.push(countAnimal);
+  }
+  return anim;
 }
-return anim
-}
-console.log(countAnimals("dog,cat",["dog","cat"]))
+console.log(countAnimals('dog,cat', ['dog', 'cat']));
 
 // мій варіант без регулярного виразу
 // function countAnimals(animals, count) {
 //     const animalArray = animals.split(','); // розділити рядок animals на масив за комами
 //     const result = [];
-  
+
 //     for (const targetAnimal of count) {
 //       let countForAnimal = 0;
 //       for (const animal of animalArray) {
@@ -245,23 +247,79 @@ console.log(countAnimals("dog,cat",["dog","cat"]))
 //       }
 //       result.push(countForAnimal);
 //     }
-  
+
 //     return result;
 //   }
-  
+
 //  =====3======
 // function countAnimals(animals,count){
 //     return count.map(animal => (animals.match(new RegExp(animal, "g")) || []).length);
 //   }
 
-  //  =====4======
+//  =====4======
 
 //   const countAnimals = (animals,count) => count.map(x => animals.split(x).length - 1);
 
-  //  =====5======
+//  =====5======
 
 // function countAnimals(animals,count){
 //     return count.map(function(x){
 //       return (animals.match(new RegExp(x,'g'))||[]).length;
 //     });
 //   }
+
+
+// You get a new job working for Eggman Movers. Your first task is to write a method that will allow the admin staff to enter a person’s name and return what that person's role is in the company.
+
+// You will be given an array of object literals holding the current employees of the company. You code must find the employee with the matching firstName and lastName and then return the role for that employee or if no employee is not found it should return "Does not work here!"
+
+// The array is preloaded and can be referenced using the variable employees ($employees in Ruby). It uses the following structure.
+
+// let employees = [ {firstName: "Dipper", lastName: "Pines", role: "Boss"}, ...... ]
+// There are no duplicate names in the array and the name passed in will be a single string with a space between the first and last name i.e. Jane Doe or just a name.
+
+
+function findEmployeesRole(name) {
+  const [firstName, lastName] = name.split(' ')
+
+for (let i = 0; i < employees.length; i +=1 ){
+if (employees[i].firstName === firstName && employees[i].lastName === lastName ){
+return employees[i].role}
+}
+  return 'Does not work here!'; 
+}
+
+
+// function findEmployeesRole(name) {
+//     for(var i = 0; i < employees.length; i++)
+//       if(name === employees[i].firstName + " " + employees[i].lastName) return employees[i].role;
+//     return "Does not work here!";
+//   }
+
+// function findEmployeesRole(name) {
+//     let [employee] = employees.filter(x => `${x.firstName} ${x.lastName}` === name);
+//     return employee ? employee.role : "Does not work here!";
+//   }
+
+
+// const findEmployeesRole = (() => {
+    
+//     let employees = [
+//         { firstName: "Ollie",  lastName: "Hepburn",  role: "Boss" },
+//         { firstName: "Morty",  lastName: "Smith",    role: "Truck Driver" },
+//         { firstName: "Peter",  lastName: "Ross",     role: "Warehouse Manager" },
+//         { firstName: "Cal",    lastName: "Neil",     role: "Sales Assistant" },
+//         { firstName: "Jesse",  lastName: "Saunders", role: "Admin" },
+//         { firstName: "Anna",   lastName: "Jones",    role: "Sales Assistant" },
+//         { firstName: "Carmel", lastName: "Hamm",     role: "Admin" },
+//         { firstName: "Tori",   lastName: "Sparks",   role: "Sales Manager" },
+//         { firstName: "Peter",  lastName: "Jones",    role: "Warehouse Picker" },
+//         { firstName: "Mort",   lastName: "Smith",    role: "Warehouse Picker" },
+//         { firstName: "Anna",   lastName: "Bell",     role: "Admin" },
+//         { firstName: "Jewel",  lastName: "Bell",     role: "Receptionist" },
+//         { firstName: "Colin",  lastName: "Brown",    role: "Trainee" }
+//     ];
+    
+//     return name => employees.reduce((o, e) => (o[`${e.firstName} ${e.lastName}`] = e.role, o), {})[name] || 'Does not work here!';
+    
+// })();
