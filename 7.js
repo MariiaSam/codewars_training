@@ -341,6 +341,7 @@ function findEmployeesRole(name) {
 // hotSingles([77, "ciao"], [78, 42, "ciao"]) // [77, 78, 42]
 // hotSingles([1, 2, 3, 3], [3, 2, 1, 4, 5, 4]) // [4,5]
 
+//Мої варіанти не пройшли повну перевірку на кодеварс
 function hotSingles(arr1, arr2) {
   const concatArrs = arr1.concat(arr2);
 
@@ -385,5 +386,47 @@ console.log(hotSingles(["tartar", "blanket", "domino"], ["blanket"]),["tartar", 
 console.log(hotSingles([77, "basketweave"], [78, 42, "basketweave"]))
 console.log(hotSingles([100, 45, "ciao"], [100, 2, 3, 45, 5]))
 console.log(hotSingles([10, 200, 30], [10, 20, 3, 4, 5, 200]))
-
+console.log(hotSingles([1, 2, 3, 3], [3, 2, 1, 4, 5, 4]))
 //консоль видає вірні тести, але кодеварсу видніше
+
+// варіанти іншиї учасників =====2======
+
+// function hotSingles(arr1, arr2) {
+//     var newArr = [];  
+//     for(var i=0;i<arr1.length;i++)
+//     {
+//       if(!newArr.includes(arr1[i]) && !arr2.includes(arr1[i]))
+//       {
+//         newArr.push(arr1[i]);
+//       }
+//     }
+//     for(var i=0;i<arr2.length;i++)
+//     {
+//       if(!newArr.includes(arr2[i]) && !arr1.includes(arr2[i]))
+//       {
+//         newArr.push(arr2[i]);
+//       }
+//     }
+//     return newArr;
+//   }
+
+// =====3======
+// var hotSingles = (a1,a2) => [...new Set(a1.concat(a2))].filter(v => !a1.includes(v) || !a2.includes(v));
+
+// =====4======
+
+// function hotSingles(arr1, arr2) {
+//     let firstFilter =  arr1.filter(e => !arr2.includes(e))
+//     let secondFilter =  arr2.filter(e => !arr1.includes(e))
+//     let combined = [...firstFilter, ...secondFilter];
+  
+//     return combined.filter((e, i) => combined.indexOf(e) === i)
+//   }
+
+
+// =====5======
+
+// const hotSingles = (A, B) => [...new Set([
+//     ...A.filter(a => !B.includes(a)),
+//     ...B.filter(b => !A.includes(b))
+//   ])]
