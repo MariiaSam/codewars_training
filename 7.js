@@ -464,15 +464,15 @@ function combine(...objs) {
 
   for (const obj of objs) {
     for (const key in obj) {
-      if (obj.hasOwnProperty(key)) { 
+      if (obj.hasOwnProperty(key)) {
         if (returnedTarget.hasOwnProperty(key)) {
-            
-        returnedTarget[key] += obj[key];
-      } else {
-        returnedTarget[key] = obj[key];
+          returnedTarget[key] += obj[key];
+        } else {
+          returnedTarget[key] = obj[key];
+        }
       }
     }
-  }}
+  }
   return returnedTarget;
 }
 
@@ -480,13 +480,13 @@ function combine(...objs) {
 
 // function combine() {
 //     var obj = {}
-  
+
 //     for (var i = 0; i < arguments.length; i++) {
 //           for (var key in arguments[i]) {
 //             obj[key] = obj[key] ? obj[key] + arguments[i][key]: arguments[i][key]
 //           }
 //     }
-  
+
 //     return obj;
 //   }
 // =====3======
@@ -494,23 +494,23 @@ function combine(...objs) {
 // function combine(...obj) {
 //     let objArr = [].concat(...obj)
 //     let finalObj = {}
-//     objArr.forEach(object => { 
+//     objArr.forEach(object => {
 //       for(key in object){
-//         if(finalObj[key]) finalObj[key] = finalObj[key] + object[key] 
-//         else finalObj[key] = object[key] 
+//         if(finalObj[key]) finalObj[key] = finalObj[key] + object[key]
+//         else finalObj[key] = object[key]
 //       }
 //     })
-//     return finalObj  
+//     return finalObj
 //   }
 
 // =====4======
 
 // const combine = (...args) => {
 //     const res = {}
-    
+
 //     args.forEach(obj => {
 //       const keys = Object.keys(obj)
-      
+
 //       keys.forEach(key => {
 //         if(!res[key]) {
 //           res[key] = obj[key]
@@ -519,10 +519,11 @@ function combine(...objs) {
 //         }
 //       })
 //     })
-    
+
 //     return res
 //   }\
 
+// ========================9 TASK========================
 
 // Implement a function that adds two numbers together and returns their sum in binary. The conversion can be done before, or after the addition.
 
@@ -533,13 +534,11 @@ function combine(...objs) {
 // 1, 1 --> "10" (1 + 1 = 2 in decimal or 10 in binary)
 // 5, 9 --> "1110" (5 + 9 = 14 in decimal or 1110 in binary)
 
-function addBinary(a,b) {
-    const sum = a+b
-    const str = sum.toString(2);
-      return str
-    }
-
-
+function addBinary(a, b) {
+  const sum = a + b;
+  const str = sum.toString(2);
+  return str;
+}
 
 //   function addBinary(a,b){
 //   return (a+b).toString(2)
@@ -556,3 +555,59 @@ function addBinary(a,b) {
 //   }
 
 // const addBinary = (a, b) => Math.trunc(a + b).toString(2)
+
+// ========================10 TASK========================
+
+// Converting a 12-hour time like "8:30 am" or "8:30 pm" to 24-hour time (like "0830" or "2030") sounds easy enough, right? Well, let's see if you can do it!
+
+// You will have to define a function, which will be given an hour (always in the range of 1 to 12, inclusive), a minute (always in the range of 0 to 59, inclusive), and a period (either a.m. or p.m.) as input.
+
+// Your task is to return a four-digit string that encodes that time in 24-hour time.
+
+// Notes
+// By convention, noon is 12:00 pm, and midnight is 12:00 am.
+// On 12-hours clock, there is no 0 hour, and time just after midnight is denoted as, for example, 12:15 am. On 24-hour clock, this translates to 0015.
+
+function to24hourtime(hour, minute, period) {
+  if (period === 'am' && hour === 12) {
+    hour = 0;
+  } else if (period === 'pm' && hour !== 12) {
+    hour += 12;
+  }
+  return hour.toString().padStart(2, '0') + minute.toString().padStart(2, '0');
+}
+
+//   function to24hourtime(hour, minute, period) {
+//     return String(period=='am'?hour%12:hour==12?12:hour+12).padStart(2,'0')+(minute+'').padStart(2,'0');
+//   }
+
+// // ========================11 TASK========================
+// You are given an odd-length array of integers, in which all of them are the same, except for one single number.
+
+// Complete the method which accepts such an array, and returns that single different number.
+
+// The input array will always be valid! (odd-length >= 3)
+
+// Examples
+// [1, 1, 2] ==> 2
+// [17, 17, 3, 17, 17, 17, 17] ==> 3
+
+function stray(numbers) {
+  const counts = {};
+
+  for (const num of numbers) {
+    if (counts[num]) {
+      counts[num] += 1;
+    } else {
+      counts[num] = 1;
+    }
+  }
+
+  for (const num in counts) {
+    if ((counts[num] === 1)) {
+      return parseInt(num);
+    }
+  }
+}
+
+console.log(stray([1, 1, 2]));
