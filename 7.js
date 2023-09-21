@@ -381,18 +381,21 @@ function hotSingles(arr1, arr2) {
   return unElem;
 }
 
-console.log(hotSingles([1, 2, 3, 3], [3, 2, 1, 4, 5]))
-console.log(hotSingles(["tartar", "blanket", "domino"], ["blanket"]),["tartar", "domino"])
-console.log(hotSingles([77, "basketweave"], [78, 42, "basketweave"]))
-console.log(hotSingles([100, 45, "ciao"], [100, 2, 3, 45, 5]))
-console.log(hotSingles([10, 200, 30], [10, 20, 3, 4, 5, 200]))
-console.log(hotSingles([1, 2, 3, 3], [3, 2, 1, 4, 5, 4]))
+console.log(hotSingles([1, 2, 3, 3], [3, 2, 1, 4, 5]));
+console.log(hotSingles(['tartar', 'blanket', 'domino'], ['blanket']), [
+  'tartar',
+  'domino',
+]);
+console.log(hotSingles([77, 'basketweave'], [78, 42, 'basketweave']));
+console.log(hotSingles([100, 45, 'ciao'], [100, 2, 3, 45, 5]));
+console.log(hotSingles([10, 200, 30], [10, 20, 3, 4, 5, 200]));
+console.log(hotSingles([1, 2, 3, 3], [3, 2, 1, 4, 5, 4]));
 //консоль видає вірні тести, але кодеварсу видніше
 
 // варіанти іншиї учасників =====2======
 
 // function hotSingles(arr1, arr2) {
-//     var newArr = [];  
+//     var newArr = [];
 //     for(var i=0;i<arr1.length;i++)
 //     {
 //       if(!newArr.includes(arr1[i]) && !arr2.includes(arr1[i]))
@@ -419,10 +422,9 @@ console.log(hotSingles([1, 2, 3, 3], [3, 2, 1, 4, 5, 4]))
 //     let firstFilter =  arr1.filter(e => !arr2.includes(e))
 //     let secondFilter =  arr2.filter(e => !arr1.includes(e))
 //     let combined = [...firstFilter, ...secondFilter];
-  
+
 //     return combined.filter((e, i) => combined.indexOf(e) === i)
 //   }
-
 
 // =====5======
 
@@ -430,3 +432,127 @@ console.log(hotSingles([1, 2, 3, 3], [3, 2, 1, 4, 5, 4]))
 //     ...A.filter(a => !B.includes(a)),
 //     ...B.filter(b => !A.includes(b))
 //   ])]
+
+// ========================8 TASK========================
+
+// Your task is to write a function that takes two or more objects and returns a new object which combines all the input objects.
+
+// All input object properties will have only numeric values. Objects are combined together so that the values of matching keys are added together.
+
+// An example:
+
+// const objA = { a: 10, b: 20, c: 30 }
+// const objB = { a: 3, c: 6, d: 3 }
+// combine(objA, objB) // Returns { a: 13, b: 20, c: 36, d: 3 }
+// The combine function should be a good citizen, so should not mutate the input objects.
+
+// function combine(...objs) {
+//   const returnedTarget = {};
+//   objs.forEach(obj => {
+//     Object.assign(returnedTarget, obj);
+//   });
+//   return returnedTarget;
+// }
+// const objA = { a: 10, b: 20, c: 30 };
+// const objB = { a: 3, c: 6, d: 3 };
+// const objC = { a: 5, d: 11, e: 8 };
+// const objD = { c: 3 };
+// console.log(combine((objA, objB, objC)));
+
+function combine(...objs) {
+  const returnedTarget = {};
+
+  for (const obj of objs) {
+    for (const key in obj) {
+      if (obj.hasOwnProperty(key)) { 
+        if (returnedTarget.hasOwnProperty(key)) {
+            
+        returnedTarget[key] += obj[key];
+      } else {
+        returnedTarget[key] = obj[key];
+      }
+    }
+  }}
+  return returnedTarget;
+}
+
+// =====2======
+
+// function combine() {
+//     var obj = {}
+  
+//     for (var i = 0; i < arguments.length; i++) {
+//           for (var key in arguments[i]) {
+//             obj[key] = obj[key] ? obj[key] + arguments[i][key]: arguments[i][key]
+//           }
+//     }
+  
+//     return obj;
+//   }
+// =====3======
+
+// function combine(...obj) {
+//     let objArr = [].concat(...obj)
+//     let finalObj = {}
+//     objArr.forEach(object => { 
+//       for(key in object){
+//         if(finalObj[key]) finalObj[key] = finalObj[key] + object[key] 
+//         else finalObj[key] = object[key] 
+//       }
+//     })
+//     return finalObj  
+//   }
+
+// =====4======
+
+// const combine = (...args) => {
+//     const res = {}
+    
+//     args.forEach(obj => {
+//       const keys = Object.keys(obj)
+      
+//       keys.forEach(key => {
+//         if(!res[key]) {
+//           res[key] = obj[key]
+//         } else {
+//           res[key] += obj[key]
+//         }
+//       })
+//     })
+    
+//     return res
+//   }\
+
+
+// Implement a function that adds two numbers together and returns their sum in binary. The conversion can be done before, or after the addition.
+
+// The binary number returned should be a string.
+
+// Examples:(Input1, Input2 --> Output (explanation)))
+
+// 1, 1 --> "10" (1 + 1 = 2 in decimal or 10 in binary)
+// 5, 9 --> "1110" (5 + 9 = 14 in decimal or 1110 in binary)
+
+function addBinary(a,b) {
+    const sum = a+b
+    const str = sum.toString(2);
+      return str
+    }
+
+
+
+//   function addBinary(a,b){
+//   return (a+b).toString(2)
+// }
+
+// function addBinary(a,b) {
+//     var c = a + b;
+//     var res = '';
+//     while (c >= 1) {
+//       var res = c % 2 + res;
+//       c = Math.floor(c / 2);
+//     }
+//     return res;
+//   }
+
+// const addBinary = (a, b) => Math.trunc(a + b).toString(2)
