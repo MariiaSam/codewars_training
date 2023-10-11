@@ -789,11 +789,70 @@ function sum (numbers) {
 
   //============3============
 
-sum = function (numbers) {
-  "use strict";
-  var total = 0;
-  for(var i = 0; i < numbers.length; i++) {
-    total += numbers[i];
+// sum = function (numbers) {
+//   "use strict";
+//   var total = 0;
+//   for(var i = 0; i < numbers.length; i++) {
+//     total += numbers[i];
+//   }
+//   return total;
+// };
+
+// ========================15 TASK========================
+
+// An element in an array is dominant if it is greater than all elements to its right. You will be given an array and your task will be to return a list of all dominant elements. For example:
+
+// solve([1,21,4,7,5]) = [21,7,5] because 21, 7 and 5 are greater than elments to their right. 
+// solve([5,4,3,2,1]) = [5,4,3,2,1]
+
+// Notice that the last element is always included. All numbers will be greater than 0.
+// More examples in the test cases.
+
+// Good luck!
+function solve(arr){
+const result = []
+const add = []
+let max = arr[arr.length - 1]
+
+for (let i = arr.length - 1; i >= 0; i-= 1) {
+  if (arr[i] >= max && !add.includes(arr[i])) { 
+      result.push(arr[i])
+      max = arr[i]
+      add.push(arr[i])
   }
-  return total;
+}
+
+return result.reverse()
 };
+
+console.log(solve([16,17,14,3,14,5,2]))
+console.log(solve([ 92,52,93,31,89,87,77,105]))
+console.log(solve([ 75,47,42,56,13,55]))
+console.log(solve([ 67,54,27,85,66,88,31,24,49]))
+console.log(solve([ 76,17,25,36,29]));
+console.log(solve([ 104,18,37,9,36,47,28]));
+
+//================2=================
+
+// function solve(arr) {
+
+//   let res = arr.slice(-1)
+//     max = res[0];
+
+//   for (let i = arr.length - 2; i >= 0; i--)
+//     if (arr[i] > max)
+//       res.unshift(max = arr[i]);
+
+//   return res;
+
+// };
+
+//================3=================
+
+// const solve = array => array.filter((num, index, array) => array.slice(index + 1).every(value => value < num), [])
+
+//================4=================
+
+// function solve(arr) {
+//   return arr.filter((v, i) => arr.slice(i+1).every(x => x < v))
+// }
