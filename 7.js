@@ -616,13 +616,9 @@ console.log(stray([1, 1, 2]));
 // // ========================12 TASK========================
 
 // You're looking through different hex codes, and having trouble telling the difference between #000001 and #100000
-
 // We need a way to tell which is red, and which is blue!
-
 // That's where you create hex_color()!
-
 // It should read an RGB input, and return whichever value (red, blue, or green) is of greatest concentration!
-
 // But, if multiple colors are of equal concentration, you should return their mix!
 
 // red + blue = magenta
@@ -707,3 +703,97 @@ console.log(hexColor('001 001 001'));
 //   return COLORS[parseInt(bindex, 2)];
 // }
 
+
+// ========================13 TASK========================
+
+// Reversing an array can be a tough task, especially for a novice programmer. Mary just started coding, so she would like to start with something basic at first. Instead of reversing the array entirely, she wants to swap just its first and last elements.
+// Given an array arr, swap its first and last elements and return the resulting array.
+// Example
+// For arr = [1, 2, 3, 4, 5], the output should be [5, 2, 3, 4, 1]
+// Input/Output
+// [input] integer array arr
+// Constraints: 0 ≤ arr.length ≤ 50,  -1000 ≤ arr[i] ≤ 1000
+// [output] an integer array
+// Array arr with its first and its last elements swapped.
+
+
+function firstReverseTry(arr) {
+  if (arr.length === 0){
+  return []
+}
+
+  let tempArr = arr[0];
+  arr[0] = arr[arr.length - 1];
+  arr[arr.length - 1] = tempArr;
+  return arr
+}
+console.log(firstReverseTry([1,2,3,4,5]))
+console.log(firstReverseTry([]))
+console.log(firstReverseTry([23, 54, 12, 3, 4, 56, 23, 12, 5, 324]))
+//
+
+//===============2==============
+// function firstReverseTry(arr) {
+//   return arr.length > 1 ? arr.slice(-1).concat(arr.slice(1, -1), arr[0]) : arr
+// }
+
+//===============3==============
+
+// function firstReverseTry(arr) {
+//   return arr.length <= 1
+//     ? arr
+//     : [arr[arr.length - 1], ...arr.slice(1, -1), arr[0]];
+// }
+
+// ========================14 TASK========================
+
+// Write a function that takes an array of numbers and returns the sum of the numbers. The numbers can be negative or non-integer. If the array does not contain any numbers then you should return 0.
+
+// Examples
+// Input: [1, 5.2, 4, 0, -1]
+// Output: 9.2
+
+// Input: []
+// Output: 0
+
+// Input: [-2.398]
+// Output: -2.398
+
+// Assumptions
+// You can assume that you are only given numbers.
+// You cannot assume the size of the array.
+// You can assume that you do get an array and if the array is empty, return 0.
+// What We're Testing
+// We're testing basic loops and math operations. This is for beginners who are just learning loops and math operations.
+// Advanced users may find this extremely easy and can easily write this in one line.
+
+
+function sum (numbers) {
+
+  let sumM = numbers.length > 0 ? numbers.reduce(function(sumM, numb){
+   return sumM + numb
+  }, 0) : 0;
+  return sumM
+  }
+
+   let nth = []
+
+   let sumNth = sum(nth)
+
+
+  //============2============
+
+  // function sum(numbers) {
+  //   return numbers.reduce((a, b) => a + b, 0);
+  // }
+
+  //============3============
+
+sum = function (numbers) {
+  "use strict";
+  var total = 0;
+  for(var i = 0; i < numbers.length; i++) {
+    total += numbers[i];
+  }
+  return total;
+};
