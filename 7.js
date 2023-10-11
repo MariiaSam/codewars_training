@@ -611,3 +611,99 @@ function stray(numbers) {
 }
 
 console.log(stray([1, 1, 2]));
+
+
+// // ========================12 TASK========================
+
+// You're looking through different hex codes, and having trouble telling the difference between #000001 and #100000
+
+// We need a way to tell which is red, and which is blue!
+
+// That's where you create hex_color()!
+
+// It should read an RGB input, and return whichever value (red, blue, or green) is of greatest concentration!
+
+// But, if multiple colors are of equal concentration, you should return their mix!
+
+// red + blue = magenta
+
+// green + red = yellow
+
+// blue + green = cyan
+
+// red + blue + green = white
+// One last thing, if the string given is empty, or has all 0's, return black!
+
+// Examples:
+
+// hexColor('087 255 054') == 'green'
+// hexColor('181 181 170') == 'yellow'
+// hexColor('000 000 000') == 'black'
+// hexColor('001 001 001') == 'white'
+
+
+function hexColor(codes) {
+  const rgbComponents = codes.split(' ');
+
+  const red = parseInt(rgbComponents[0]);
+  const green = parseInt(rgbComponents[1]);
+  const blue = parseInt(rgbComponents[2]);
+
+  const maxConcentration = Math.max(red, green, blue);
+
+  if (codes.trim() === '' || (red === 0 && green === 0 && blue === 0)) {
+    return 'black';
+  }
+
+  if (red === maxConcentration && green === maxConcentration && blue === maxConcentration) {
+    return 'white';
+  } else if (red === maxConcentration && green === maxConcentration) {
+    return 'yellow';
+  } else if (red === maxConcentration && blue === maxConcentration) {
+    return 'magenta';
+  } else if (green === maxConcentration && blue === maxConcentration) {
+    return 'cyan';
+  } else if (red === maxConcentration) {
+    return 'red';
+  } else if (green === maxConcentration) {
+    return 'green';
+  } else if (blue === maxConcentration) {
+    return 'blue';
+  }
+}
+
+console.log(hexColor('087 255 054')); 
+console.log(hexColor('181 181 170')); 
+console.log(hexColor('000 000 000')); 
+console.log(hexColor('001 001 001')); 
+
+// =====2======
+
+// function hexColor(rgb) {
+//   let colors = (rgb || '0 0 0').split(' ').map(Number);
+//   let max = Math.max(colors[0], colors[1], colors[2]);
+//   let hash = colors.map(c => c > 0 && c == max ? '1' : '0').join('');
+  
+//   return {
+//     '000': 'black',
+//     '111': 'white',
+//     '100': 'red',
+//     '110': 'yellow',
+//     '010': 'green',
+//     '011': 'cyan',
+//     '001': 'blue',
+//     '101': 'magenta'
+//   }[hash];
+//} 
+
+// =========3==========
+// const COLORS = ["black", "blue", "green", "cyan", "red", "magenta", "yellow", "white"];
+
+// function hexColor(codes) {
+//   if (!codes) return COLORS[0];
+//   const rgb = codes.split` `,
+//     max = Math.max(...rgb),
+//     bindex = rgb.map(color => +(color > 0 && color == max)).join``;
+//   return COLORS[parseInt(bindex, 2)];
+// }
+
