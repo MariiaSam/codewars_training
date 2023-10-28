@@ -604,14 +604,13 @@ function stray(numbers) {
   }
 
   for (const num in counts) {
-    if ((counts[num] === 1)) {
+    if (counts[num] === 1) {
       return parseInt(num);
     }
   }
 }
 
 console.log(stray([1, 1, 2]));
-
 
 // // ========================12 TASK========================
 
@@ -637,7 +636,6 @@ console.log(stray([1, 1, 2]));
 // hexColor('000 000 000') == 'black'
 // hexColor('001 001 001') == 'white'
 
-
 function hexColor(codes) {
   const rgbComponents = codes.split(' ');
 
@@ -651,7 +649,11 @@ function hexColor(codes) {
     return 'black';
   }
 
-  if (red === maxConcentration && green === maxConcentration && blue === maxConcentration) {
+  if (
+    red === maxConcentration &&
+    green === maxConcentration &&
+    blue === maxConcentration
+  ) {
     return 'white';
   } else if (red === maxConcentration && green === maxConcentration) {
     return 'yellow';
@@ -668,10 +670,10 @@ function hexColor(codes) {
   }
 }
 
-console.log(hexColor('087 255 054')); 
-console.log(hexColor('181 181 170')); 
-console.log(hexColor('000 000 000')); 
-console.log(hexColor('001 001 001')); 
+console.log(hexColor('087 255 054'));
+console.log(hexColor('181 181 170'));
+console.log(hexColor('000 000 000'));
+console.log(hexColor('001 001 001'));
 
 // =====2======
 
@@ -679,7 +681,7 @@ console.log(hexColor('001 001 001'));
 //   let colors = (rgb || '0 0 0').split(' ').map(Number);
 //   let max = Math.max(colors[0], colors[1], colors[2]);
 //   let hash = colors.map(c => c > 0 && c == max ? '1' : '0').join('');
-  
+
 //   return {
 //     '000': 'black',
 //     '111': 'white',
@@ -690,7 +692,7 @@ console.log(hexColor('001 001 001'));
 //     '001': 'blue',
 //     '101': 'magenta'
 //   }[hash];
-//} 
+//}
 
 // =========3==========
 // const COLORS = ["black", "blue", "green", "cyan", "red", "magenta", "yellow", "white"];
@@ -702,7 +704,6 @@ console.log(hexColor('001 001 001'));
 //     bindex = rgb.map(color => +(color > 0 && color == max)).join``;
 //   return COLORS[parseInt(bindex, 2)];
 // }
-
 
 // ========================13 TASK========================
 
@@ -716,20 +717,19 @@ console.log(hexColor('001 001 001'));
 // [output] an integer array
 // Array arr with its first and its last elements swapped.
 
-
 function firstReverseTry(arr) {
-  if (arr.length === 0){
-  return []
-}
+  if (arr.length === 0) {
+    return [];
+  }
 
   let tempArr = arr[0];
   arr[0] = arr[arr.length - 1];
   arr[arr.length - 1] = tempArr;
-  return arr
+  return arr;
 }
-console.log(firstReverseTry([1,2,3,4,5]))
-console.log(firstReverseTry([]))
-console.log(firstReverseTry([23, 54, 12, 3, 4, 56, 23, 12, 5, 324]))
+console.log(firstReverseTry([1, 2, 3, 4, 5]));
+console.log(firstReverseTry([]));
+console.log(firstReverseTry([23, 54, 12, 3, 4, 56, 23, 12, 5, 324]));
 //
 
 //===============2==============
@@ -767,27 +767,27 @@ console.log(firstReverseTry([23, 54, 12, 3, 4, 56, 23, 12, 5, 324]))
 // We're testing basic loops and math operations. This is for beginners who are just learning loops and math operations.
 // Advanced users may find this extremely easy and can easily write this in one line.
 
+function sum(numbers) {
+  let sumM =
+    numbers.length > 0
+      ? numbers.reduce(function (sumM, numb) {
+          return sumM + numb;
+        }, 0)
+      : 0;
+  return sumM;
+}
 
-function sum (numbers) {
+let nth = [];
 
-  let sumM = numbers.length > 0 ? numbers.reduce(function(sumM, numb){
-   return sumM + numb
-  }, 0) : 0;
-  return sumM
-  }
+let sumNth = sum(nth);
 
-   let nth = []
+//============2============
 
-   let sumNth = sum(nth)
+// function sum(numbers) {
+//   return numbers.reduce((a, b) => a + b, 0);
+// }
 
-
-  //============2============
-
-  // function sum(numbers) {
-  //   return numbers.reduce((a, b) => a + b, 0);
-  // }
-
-  //============3============
+//============3============
 
 // sum = function (numbers) {
 //   "use strict";
@@ -802,35 +802,35 @@ function sum (numbers) {
 
 // An element in an array is dominant if it is greater than all elements to its right. You will be given an array and your task will be to return a list of all dominant elements. For example:
 
-// solve([1,21,4,7,5]) = [21,7,5] because 21, 7 and 5 are greater than elments to their right. 
+// solve([1,21,4,7,5]) = [21,7,5] because 21, 7 and 5 are greater than elments to their right.
 // solve([5,4,3,2,1]) = [5,4,3,2,1]
 
 // Notice that the last element is always included. All numbers will be greater than 0.
 // More examples in the test cases.
 
 // Good luck!
-function solve(arr){
-const result = []
-const add = []
-let max = arr[arr.length - 1]
+function solve(arr) {
+  const result = [];
+  const add = [];
+  let max = arr[arr.length - 1];
 
-for (let i = arr.length - 1; i >= 0; i-= 1) {
-  if (arr[i] >= max && !add.includes(arr[i])) { 
-      result.push(arr[i])
-      max = arr[i]
-      add.push(arr[i])
+  for (let i = arr.length - 1; i >= 0; i -= 1) {
+    if (arr[i] >= max && !add.includes(arr[i])) {
+      result.push(arr[i]);
+      max = arr[i];
+      add.push(arr[i]);
+    }
   }
+
+  return result.reverse();
 }
 
-return result.reverse()
-};
-
-console.log(solve([16,17,14,3,14,5,2]))
-console.log(solve([ 92,52,93,31,89,87,77,105]))
-console.log(solve([ 75,47,42,56,13,55]))
-console.log(solve([ 67,54,27,85,66,88,31,24,49]))
-console.log(solve([ 76,17,25,36,29]));
-console.log(solve([ 104,18,37,9,36,47,28]));
+console.log(solve([16, 17, 14, 3, 14, 5, 2]));
+console.log(solve([92, 52, 93, 31, 89, 87, 77, 105]));
+console.log(solve([75, 47, 42, 56, 13, 55]));
+console.log(solve([67, 54, 27, 85, 66, 88, 31, 24, 49]));
+console.log(solve([76, 17, 25, 36, 29]));
+console.log(solve([104, 18, 37, 9, 36, 47, 28]));
 
 //================2=================
 
@@ -856,3 +856,45 @@ console.log(solve([ 104,18,37,9,36,47,28]));
 // function solve(arr) {
 //   return arr.filter((v, i) => arr.slice(i+1).every(x => x < v))
 // }
+
+// ========================16 TASK========================
+// You have a group chat application, but who is online!?
+
+// You want to show your users which of their friends are online and available to chat!
+
+// Given an input of an array of objects containing usernames, status and time since last activity (in mins), create a function to work out who is online, offline and away.
+
+// If someone is online but their lastActivity was more than 10 minutes ago they are to be considered away.
+
+// The input data has the following structure:
+
+// [{
+//   username: 'David',
+//   status: 'online',
+//   lastActivity: 10
+// }, {
+//   username: 'Lucy',
+//   status: 'offline',
+//   lastActivity: 22
+// }, {
+//   username: 'Bob',
+//   status: 'online',
+//   lastActivity: 104
+// }]
+// The corresponding output should look as follows:
+
+// {
+//   online: ['David'],
+//   offline: ['Lucy'],
+//   away: ['Bob']
+// }
+// If for example, no users are online the output should look as follows:
+
+// {
+//   offline: ['Lucy'],
+//   away: ['Bob']
+// }
+// username will always be a string, status will always be either 'online' or 'offline' (UserStatus enum in C#) and lastActivity will always be number >= 0.
+
+// Finally, if you have no friends in your chat application, the input will be an empty array []. In this case you should return an empty object {} (empty Dictionary in C#).
+const whosOnline = friends => {};
