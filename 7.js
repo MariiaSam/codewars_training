@@ -897,4 +897,22 @@ console.log(solve([104, 18, 37, 9, 36, 47, 28]));
 // username will always be a string, status will always be either 'online' or 'offline' (UserStatus enum in C#) and lastActivity will always be number >= 0.
 
 // Finally, if you have no friends in your chat application, the input will be an empty array []. In this case you should return an empty object {} (empty Dictionary in C#).
-const whosOnline = friends => {};
+
+const whosOnline = friends => {
+  const result = {
+    online: [],
+    offline: [],
+    away: [],
+  };
+  for (const friend of friends) {
+    if (friend.status === 'online' && friend.lastActivity <= 10) {
+      result.online.push(friend.username);
+    } else if (friend.status === 'online' && friend.lastActivity > 10) {
+      result.away.push(friend.username);
+    } else {
+      result.offline.push(friend.username);
+    }
+  }
+
+  return result;
+};
